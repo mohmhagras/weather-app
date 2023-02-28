@@ -1,6 +1,9 @@
-<main>
-  <h4>
-    {{ weatherData?.location?.name }}, {{ weatherData?.location?.country }}
-  </h4>
-  <h4>{{ weatherData?.current?.temp_c }}° C</h4>
+<main
+  [ngClass]="{
+    'morning-bg': currentWeather?.is_day,
+    'night-bg': !currentWeather?.is_day
+  }"
+>
+  <h2>{{ location?.name }}, {{ location?.country }}</h2>
+  <h1>{{ currentWeather?.temp_c }}° C</h1>
 </main>
