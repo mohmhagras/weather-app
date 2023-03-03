@@ -1,14 +1,27 @@
 <section>
   <div class="vertical-centered-container info-container">
     <h1>
-      {{ temp }}<sup>°{{ tempUnit }}</sup>
+      {{ temp | number : "1.0-0" }}<sup>°{{ tempUnit }}</sup>
     </h1>
-    <h3>{{ weatherText }}</h3>
     <div class="horizontal-centered-container">
-      <h5>{{ cityName }}</h5>
+      <img [src]="weatherIcon" width="42px" height="42px" />
+      <h3>{{ weatherText }}</h3>
     </div>
-    <div class="horizontal-centered-container">
-      <h5>{{ dateTime | date }}</h5>
+    <div class="divider"></div>
+    <div class="vertical-left-aligned-container">
+      <div class="horizontal-centered-container">
+        <i-feather name="map-pin" class="icon"></i-feather>
+
+        <h5>{{ cityName }}</h5>
+      </div>
+      <div class="horizontal-centered-container">
+        <i-feather name="clock" class="icon"></i-feather>
+
+        <h5>
+          {{ dateTime | async | date }}
+          <strong> {{ dateTime | async | date : "shortTime" }}</strong>
+        </h5>
+      </div>
     </div>
   </div>
 </section>
