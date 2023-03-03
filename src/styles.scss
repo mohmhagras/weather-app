@@ -6,7 +6,7 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  color: black;
+  color: white;
   font-family: "Oxygen", sans-serif;
 }
 html,
@@ -21,19 +21,76 @@ main {
   flex-direction: column;
   align-items: center;
   padding: 36px 12px;
+  background-color: black;
+}
+section {
+  width: 100%;
+}
+.vertical-centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.horizontal-centered-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 h1 {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 h2 {
   font-size: 2rem;
   font-weight: 300;
 }
-
+h3 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+h4 {
+  font-size: 1rem;
+  font-weight: 300;
+}
+h5 {
+  font-weight: 400;
+}
 .morning-bg {
   background-color: colors.$morning-sky;
 }
 .night-bg {
   background-color: colors.$night-sky;
+}
+
+.info-container {
+  background: rgb(48, 69, 88);
+  background: linear-gradient(
+    90deg,
+    rgba(48, 69, 88, 1) 0%,
+    rgba(51, 75, 85, 1) 35%,
+    rgba(9, 129, 179, 0.4) 91%
+  );
+  border-radius: 12px;
+  width: 100%;
+  padding: 24px 0px;
+}
+
+sup {
+  font-size: 0.5em;
+  font-weight: 300;
+}
+
+.icon {
+  margin-right: 4px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

@@ -1,7 +1,7 @@
 export type WeatherApiResponse = {
   location: Location;
   current: CurrentWeather;
-  forecast: Object;
+  forecast: object;
 } | null;
 
 export type Location = {
@@ -14,4 +14,9 @@ export type CurrentWeather = {
   temp_f: number;
   is_day: boolean;
   last_updated: Date;
+  condition: {
+    text: string;
+    icon: string;
+    code: number;
+  };
 } | null;

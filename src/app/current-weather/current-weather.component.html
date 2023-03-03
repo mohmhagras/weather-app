@@ -1,0 +1,14 @@
+<section>
+  <div class="vertical-centered-container info-container">
+    <h1>
+      {{ temp }}<sup>°{{ tempUnit }}</sup>
+    </h1>
+    <h3>{{ weatherText }}</h3>
+    <div class="horizontal-centered-container">
+      <h5>{{ cityName }}</h5>
+    </div>
+    <div class="horizontal-centered-container">
+      <h5>{{ dateTime | date }}</h5>
+    </div>
+  </div>
+</section>
