@@ -12,11 +12,16 @@ export type Location = {
 export type CurrentWeather = {
   temp_c: number;
   temp_f: number;
-  is_day: boolean;
+  is_day: number;
   last_updated: Date;
   condition: {
     text: string;
     icon: string;
     code: number;
   };
+  wind_mph: number;
+  wind_kph: number;
+  wind_dir: string;
+  humidity: number;
+  uv: number;
 } | null;

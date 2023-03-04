@@ -1,4 +1,4 @@
 export enum SpeedUnit {
-  KM = 'KM/H',
-  MI = 'M/H',
+  KM = 'km/h',
+  MI = 'm/h',
 }

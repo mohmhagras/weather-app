@@ -15,7 +15,7 @@ export class CurrentWeatherComponent implements OnInit {
   @Input() weatherCode = 0;
   @Input() temp = 0;
   @Input() cityName = '';
-  @Input() isDay = false;
+  @Input() isDay = 0;
   @Input() tempUnit = TempratrueUnit.C;
   @Input() speedMode = SpeedUnit.KM;
   dateTime!: Observable<Date>;
@@ -24,7 +24,7 @@ export class CurrentWeatherComponent implements OnInit {
   ngOnInit(): void {
     this.dateTime = timer(0, 1000).pipe(map(() => new Date()));
     this.iconPath = `../../assets/weather-icons/${this.weatherCode}${
-      this.isDay === true ? 1 : 0
+      this.isDay ? 1 : 0
     }.svg`;
   }
 }

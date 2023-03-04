@@ -1,0 +1,22 @@
+<section class="vertical-left-aligned-container info-container">
+  <h5>Today's Highlights</h5>
+  <div class="horizontal-centered-container">
+    <div class="info-box">
+      <h5 class="title">Wind Status</h5>
+      <h2>
+        {{ windSpeed }}
+        <span>
+          {{ speedUnit }}
+        </span>
+      </h2>
+
+      <h5>{{ windDirectionText![windDir] }}</h5>
+    </div>
+    <div class="info-box">
+      <h5 class="title">UV Index</h5>
+      <h2>
+        {{ uv }}
+      </h2>
+    </div>
+  </div>
+</section>

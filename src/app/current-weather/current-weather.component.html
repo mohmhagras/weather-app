@@ -1,27 +1,25 @@
-<section>
-  <div class="vertical-centered-container info-container">
-    <h1>
-      {{ temp | number : "1.0-0" }}<sup>°{{ tempUnit }}</sup>
-    </h1>
+<section class="vertical-centered-container info-container">
+  <h1>
+    {{ temp | number : "1.0-0" }}<sup>°{{ tempUnit }}</sup>
+  </h1>
+  <div class="horizontal-centered-container">
+    <img [src]="iconPath" width="36px" height="36px" />
+    <h3>{{ weatherText }}</h3>
+  </div>
+  <div class="divider"></div>
+  <div class="vertical-left-aligned-container location-time-container">
     <div class="horizontal-centered-container">
-      <img [src]="iconPath" width="42px" height="42px" />
-      <h3>{{ weatherText }}</h3>
+      <i-feather name="map-pin" class="icon"></i-feather>
+
+      <h5>{{ cityName }}</h5>
     </div>
-    <div class="divider"></div>
-    <div class="vertical-left-aligned-container location-time-container">
-      <div class="horizontal-centered-container">
-        <i-feather name="map-pin" class="icon"></i-feather>
+    <div class="horizontal-centered-container">
+      <i-feather name="clock" class="icon"></i-feather>
 
-        <h5>{{ cityName }}</h5>
-      </div>
-      <div class="horizontal-centered-container">
-        <i-feather name="clock" class="icon"></i-feather>
-
-        <h5>
-          {{ dateTime | async | date }}
-          <strong> {{ dateTime | async | date : "shortTime" }}</strong>
-        </h5>
-      </div>
+      <h5>
+        {{ dateTime | async | date }}
+        <strong> {{ dateTime | async | date : "shortTime" }}</strong>
+      </h5>
     </div>
   </div>
 </section>

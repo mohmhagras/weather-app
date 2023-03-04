@@ -8,4 +8,12 @@
     [weatherCode]="currentWeather!.condition.code"
     [isDay]="currentWeather!.is_day"
   ></app-current-weather>
+  <app-current-highlights
+    [speedUnit]="speedUnit"
+    [windSpeed]="currentWeather![speedElement]"
+    [windDir]="currentWeather!.wind_dir"
+    [humidity]="currentWeather!.humidity"
+    [uv]="currentWeather!.uv"
+  >
+  </app-current-highlights>
 </main>
