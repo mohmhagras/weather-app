@@ -10,16 +10,21 @@ import { TempratrueUnit } from '../shared/enums/tempratrue-unit';
   styleUrls: ['./current-weather.component.scss'],
 })
 export class CurrentWeatherComponent implements OnInit {
-  @Input() temp = 0;
   @Input() weatherText = '';
   @Input() weatherIcon = '';
+  @Input() weatherCode = 0;
+  @Input() temp = 0;
   @Input() cityName = '';
-  @Input() iconCode = 0;
+  @Input() isDay = false;
   @Input() tempUnit = TempratrueUnit.C;
   @Input() speedMode = SpeedUnit.KM;
   dateTime!: Observable<Date>;
+  iconPath = '';
 
   ngOnInit(): void {
     this.dateTime = timer(0, 1000).pipe(map(() => new Date()));
+    this.iconPath = `../../assets/weather-icons/${this.weatherCode}${
+      this.isDay === true ? 1 : 0
+    }.svg`;
   }
 }

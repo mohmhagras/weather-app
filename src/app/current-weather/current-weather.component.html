@@ -4,11 +4,11 @@
       {{ temp | number : "1.0-0" }}<sup>°{{ tempUnit }}</sup>
     </h1>
     <div class="horizontal-centered-container">
-      <img [src]="weatherIcon" width="42px" height="42px" />
+      <img [src]="iconPath" width="42px" height="42px" />
       <h3>{{ weatherText }}</h3>
     </div>
     <div class="divider"></div>
-    <div class="vertical-left-aligned-container">
+    <div class="vertical-left-aligned-container location-time-container">
       <div class="horizontal-centered-container">
         <i-feather name="map-pin" class="icon"></i-feather>
 
