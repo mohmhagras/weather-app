@@ -1,0 +1,63 @@
+.semicircles-container {
+  position: relative;
+  width: 190px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+.gray-semicircle {
+  width: 190px;
+  height: 100px;
+  border: 12px solid rgba(128, 128, 128, 0.5);
+}
+.white-semicircle {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  position: absolute;
+  width: 178px;
+  height: 94px;
+  top: 6px;
+  right: 6px;
+  left: 6px;
+}
+.semicircle {
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border-bottom: 0;
+}
+
+.numbers-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0px;
+  align-items: flex-end;
+  p {
+    font-size: 0.7rem;
+    color: gray;
+    font-size: 400;
+    position: absolute;
+  }
+  p:nth-child(1) {
+    transform: translate(-74px, 0px);
+  }
+  p:nth-child(2) {
+    transform: translate(-64px, -32px);
+  }
+  p:nth-child(3) {
+    transform: translate(-40px, -60px);
+  }
+  p:nth-child(4) {
+    transform: translate(0px, -70px);
+  }
+  p:nth-child(5) {
+    transform: translate(40px, -60px);
+  }
+  p:nth-child(6) {
+    transform: translate(64px, -31px);
+  }
+  p:nth-child(7) {
+    transform: translate(72px, 0px);
+  }
+}
