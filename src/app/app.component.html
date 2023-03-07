@@ -1,8 +1,10 @@
 <main>
-  <div class="horizontal-spaced-container current-info-wrapper">
+  <div class="horizontal-centered-container current-info-wrapper">
     <app-current-weather
       [temp]="currentWeather![tempElement]"
       [tempUnit]="tempUnit"
+      [maxTemp]="forecastedWeather[0].day[maxTempElement]"
+      [minTemp]="forecastedWeather[0].day[minTempElement]"
       [weatherText]="currentWeather!.condition.text"
       [weatherIcon]="currentWeather!.condition.icon"
       [cityName]="location!.name"
@@ -15,6 +17,8 @@
       [windDir]="currentWeather!.wind_dir"
       [humidity]="currentWeather!.humidity"
       [uvNumber]="currentWeather!.uv"
+      [sunrise]="forecastedWeather![0].astro.sunrise"
+      [sunset]="forecastedWeather![0].astro.sunset"
     >
     </app-current-highlights>
   </div>

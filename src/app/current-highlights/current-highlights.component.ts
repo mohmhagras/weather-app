@@ -12,6 +12,8 @@ export class CurrentHighlightsComponent implements OnInit {
   @Input() windDir!: string;
   @Input() humidity = 0;
   @Input() uvNumber = 0;
+  @Input() sunrise = '';
+  @Input() sunset = '';
   uvText = '';
   windDirectionText: any = {
     N: 'Heading from North to South',

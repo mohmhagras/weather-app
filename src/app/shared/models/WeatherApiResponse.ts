@@ -1,7 +1,9 @@
 export type WeatherApiResponse = {
   location: Location;
   current: CurrentWeather;
-  forecast: object;
+  forecast: {
+    forecastday: Array<Forecast>;
+  };
 } | null;
 
 export type Location = {
@@ -25,3 +27,16 @@ export type CurrentWeather = {
   humidity: number;
   uv: number;
 } | null;
+
+export type Forecast = {
+  day: {
+    maxtemp_c: number;
+    maxtemp_f: number;
+    mintemp_c: number;
+    mintemp_f: number;
+  };
+  astro: {
+    sunrise: string;
+    sunset: string;
+  };
+};

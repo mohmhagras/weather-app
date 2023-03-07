@@ -4,6 +4,7 @@ import {
   WeatherApiResponse,
   Location,
   CurrentWeather,
+  Forecast,
 } from './shared/models/WeatherApiResponse';
 import { TempratrueUnit } from './shared/enums/tempratrue-unit';
 import { SpeedUnit } from './shared/enums/speed-unit';
@@ -18,8 +19,10 @@ export class AppComponent implements OnInit {
   private _speedUnit = SpeedUnit.KM;
   location: Location = null;
   currentWeather: CurrentWeather = null;
-  forecastedWeather = {};
+  forecastedWeather: Forecast[] = [];
   tempElement: 'temp_c' | 'temp_f' = 'temp_c';
+  maxTempElement: 'maxtemp_c' | 'maxtemp_f' = 'maxtemp_c';
+  minTempElement: 'mintemp_c' | 'mintemp_f' = 'mintemp_c';
   speedElement: 'wind_kph' | 'wind_mph' = 'wind_kph';
 
   public get tempUnit() {
@@ -28,6 +31,8 @@ export class AppComponent implements OnInit {
   public set tempUnit(tempUnit: TempratrueUnit) {
     this._tempUnit = tempUnit;
     this.tempElement = tempUnit === 'C' ? 'temp_c' : 'temp_f';
+    this.maxTempElement = tempUnit === 'C' ? 'maxtemp_c' : 'maxtemp_f';
+    this.minTempElement = tempUnit === 'C' ? 'mintemp_c' : 'mintemp_f';
   }
 
   public set speedUnit(speedUnit: SpeedUnit) {
@@ -42,7 +47,7 @@ export class AppComponent implements OnInit {
   private setWeatherData(ApiResponse: WeatherApiResponse) {
     this.location = ApiResponse!.location;
     this.currentWeather = ApiResponse!.current;
-    this.forecastedWeather = ApiResponse!.forecast;
+    this.forecastedWeather = ApiResponse!.forecast!.forecastday;
   }
 
   ngOnInit(): void {

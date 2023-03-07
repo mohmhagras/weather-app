@@ -66,3 +66,14 @@
     transform: translate(72px, 0px);
   }
 }
+
+.sun-icon {
+  width: 20px !important;
+  color: lightslategray;
+}
+
+.main-content-wrapper {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}

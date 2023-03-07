@@ -6,6 +6,7 @@
     <img [src]="iconPath" width="36px" height="36px" />
     <h3>{{ weatherText }}</h3>
   </div>
+  <h4>H: {{ maxTemp }}° L: {{ minTemp }}°</h4>
   <div class="divider"></div>
   <div class="vertical-left-aligned-container location-time-container">
     <div class="horizontal-centered-container">
@@ -18,7 +19,7 @@
 
       <h5>
         {{ dateTime | async | date }}
-        <strong> {{ dateTime | async | date : "shortTime" }}</strong>
+        <b> {{ dateTime | async | date : "shortTime" }}</b>
       </h5>
     </div>
   </div>

@@ -29,6 +29,12 @@ main {
   align-items: flex-start;
   justify-content: center;
 }
+.vertical-right-aligned-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
 .vertical-centered-container {
   display: flex;
   flex-direction: column;
@@ -78,6 +84,10 @@ h4 {
 h5 {
   font-weight: 400;
 }
+h6 {
+  font-weight: 400;
+  color: goldenrod;
+}
 .morning-bg {
   background-color: colors.$morning-sky;
 }
@@ -102,18 +112,14 @@ h5 {
     border-radius: 16px;
     padding: 16px 12px;
     width: 225px;
-    height: 210px;
+    height: 225px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-top: 16px;
     margin-right: 16px;
     .title {
       color: lightslategray;
-    }
-    .main-content-wrapper {
-      height: 100px;
-      display: flex;
-      align-items: center;
     }
   }
 }
@@ -137,10 +143,4 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.divider {
-  border-top: solid 0.5px rgba(255, 255, 255, 0.2);
-  width: 85%;
-  margin: 16px 0px;
 }
