@@ -3,13 +3,14 @@
   <div class="horizontal-centered-container">
     <div class="info-box">
       <h5 class="title">Wind Status</h5>
-      <h2>
-        {{ windSpeed }}
-        <span>
-          {{ speedUnit }}
-        </span>
-      </h2>
-
+      <div class="main-content-wrapper">
+        <h2>
+          {{ windSpeed }}
+          <span>
+            {{ speedUnit }}
+          </span>
+        </h2>
+      </div>
       <h5>{{ windDirectionText![windDir] }}</h5>
     </div>
     <div class="info-box">
@@ -17,19 +18,18 @@
       <div class="semicircles-container">
         <div class="semicircle gray-semicircle"></div>
         <div class="semicircle white-semicircle"></div>
+
         <div class="horizontal-centered-container numbers-container">
-          <p>0</p>
-          <p>2</p>
-          <p>4</p>
-          <p>6</p>
-          <p>8</p>
-          <p>10</p>
-          <p>12</p>
+          <p [ngClass]="{ 'active-number': uvNumber === 0 }">0</p>
+          <p [ngClass]="{ 'active-number': uvNumber === 2 }">2</p>
+          <p [ngClass]="{ 'active-number': uvNumber === 4 }">4</p>
+          <p [ngClass]="{ 'active-number': uvNumber === 6 }">6</p>
+          <p [ngClass]="{ 'active-number': uvNumber === 8 }">8</p>
+          <p [ngClass]="{ 'active-number': uvNumber === 10 }">10</p>
+          <p [ngClass]="{ 'active-number': uvNumber === 12 }">12</p>
         </div>
       </div>
-      <h2>
-        {{ uv }}
-      </h2>
+      <h5>{{ uvNumber }}: {{ uvText }}</h5>
     </div>
   </div>
 </section>

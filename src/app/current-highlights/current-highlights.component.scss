@@ -10,10 +10,13 @@
 .gray-semicircle {
   width: 190px;
   height: 100px;
-  border: 12px solid rgba(128, 128, 128, 0.5);
+  border: 13px solid /*rgba(128, 128, 128, 0.5)*/;
+  border-left-color: yellowgreen;
+  border-top-color: orange;
+  border-right-color: purple;
 }
 .white-semicircle {
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 1);
   position: absolute;
   width: 178px;
   height: 94px;
@@ -31,13 +34,15 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  bottom: 0px;
   align-items: flex-end;
   p {
     font-size: 0.7rem;
     color: gray;
     font-size: 400;
     position: absolute;
+  }
+  .active-number {
+    color: white;
   }
   p:nth-child(1) {
     transform: translate(-74px, 0px);
