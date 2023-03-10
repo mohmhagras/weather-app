@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SpeedUnit } from '../shared/enums/speed-unit';
-
+import { SunCoordinates } from '../shared/constants/SunCoordinates';
+import { WindDirectionText } from '../shared/constants/WindDirection';
 @Component({
   selector: 'app-current-highlights',
   templateUrl: './current-highlights.component.html',
@@ -14,30 +15,16 @@ export class CurrentHighlightsComponent implements OnInit {
   @Input() uvNumber = 0;
   @Input() sunrise = '';
   @Input() sunset = '';
+  readonly windDirectionText: any = WindDirectionText;
+  readonly sunCoordinates = SunCoordinates;
+  dayTimePercent = 0;
   uvText = '';
-  windDirectionText: any = {
-    N: 'Heading from North to South',
-    NNE: 'Heading from Northeast to Southwest',
-    NE: 'Heading from Northeast to Southwest',
-    ENE: 'Heading from Northeast to Southwest',
-    E: 'Heading from East to West',
-    ESE: 'Heading from Southeast to Northwest',
-    SE: 'Heading from Southeast to Northwest',
-    SSE: 'Heading from Southeast to Northwest',
-    S: 'Heading from South to North',
-    SSW: 'Heading from Southwest to Northeast',
-    SW: 'Heading from Southwest to Northeast',
-    WSW: 'Heading from Southwest to Northeast',
-    W: 'Heading from West to East',
-    WNW: 'Heading from Northwest to Southeast',
-    NW: 'Heading from Northwest to Southeast',
-    NNW: 'Heading from Northwest to Southeast',
-  };
   ngOnInit(): void {
     this.setUvText();
+    this.setDayTimePercent();
   }
 
-  private setUvText() {
+  private setUvText(): void {
     if (this.uvNumber < 3) {
       this.uvText = 'Low. You can safely stay outside';
     } else if (this.uvNumber < 6) {
@@ -49,5 +36,26 @@ export class CurrentHighlightsComponent implements OnInit {
     } else if (this.uvNumber >= 11) {
       this.uvText = 'Extreme. Avoid being outside if possible';
     }
+  }
+
+  private setDayTimePercent() {
+    const dateRef = new Date();
+    const sunriseTimestamp = new Date(
+      dateRef.getFullYear(),
+      dateRef.getMonth(),
+      dateRef.getDate(),
+      parseInt(this.sunrise.slice(0, 2)),
+      parseInt(this.sunrise.slice(3, 5))
+    ).valueOf();
+    const sunsetTimestamp = new Date(
+      dateRef.getFullYear(),
+      dateRef.getMonth(),
+      dateRef.getDate(),
+      parseInt(this.sunset.slice(0, 2)) + 12,
+      parseInt(this.sunset.slice(3, 5))
+    ).valueOf();
+    const dayTime = sunsetTimestamp - sunriseTimestamp;
+    const value = Math.floor(((Date.now() - sunriseTimestamp) * 100) / dayTime);
+    if (value < 100) this.dayTimePercent = value;
   }
 }
