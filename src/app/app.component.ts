@@ -8,6 +8,7 @@ import {
 } from './shared/models/WeatherApiResponse';
 import { TempratrueUnit } from './shared/enums/tempratrue-unit';
 import { SpeedUnit } from './shared/enums/speed-unit';
+import { RequestStatus } from './shared/enums/request-status';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,9 +18,10 @@ export class AppComponent implements OnInit {
   constructor(private forecastService: ForecastService) {}
   private _tempUnit = TempratrueUnit.C;
   private _speedUnit = SpeedUnit.KM;
-  location: Location = null;
-  currentWeather: CurrentWeather = null;
-  forecastedWeather: Forecast[] = [];
+  requestStatus = RequestStatus.LOADING;
+  location!: Location;
+  currentWeather!: CurrentWeather;
+  forecastedWeather!: Forecast[];
   tempElement: 'temp_c' | 'temp_f' = 'temp_c';
   maxTempElement: 'maxtemp_c' | 'maxtemp_f' = 'maxtemp_c';
   minTempElement: 'mintemp_c' | 'mintemp_f' = 'mintemp_c';
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit {
   public get tempUnit() {
     return this._tempUnit;
   }
+
   public set tempUnit(tempUnit: TempratrueUnit) {
     this._tempUnit = tempUnit;
     this.tempElement = tempUnit === 'C' ? 'temp_c' : 'temp_f';
@@ -45,14 +48,21 @@ export class AppComponent implements OnInit {
   }
 
   private setWeatherData(ApiResponse: WeatherApiResponse) {
-    this.location = ApiResponse!.location;
-    this.currentWeather = ApiResponse!.current;
-    this.forecastedWeather = ApiResponse!.forecast!.forecastday;
+    if (ApiResponse[0] === 'success') {
+      this.location = ApiResponse[1].location;
+      this.currentWeather = ApiResponse[1].current;
+      this.forecastedWeather = ApiResponse[1].forecast.forecastday;
+      this.requestStatus = RequestStatus.SUCCESS;
+    } else if (ApiResponse[0] === 'error') {
+      this.requestStatus = RequestStatus.ERROR;
+      alert(ApiResponse[1].message);
+    }
   }
 
   ngOnInit(): void {
-    this.forecastService
-      .get()
-      .subscribe((result) => this.setWeatherData(result));
+    this.forecastService.get().subscribe({
+      next: (result) => this.setWeatherData([RequestStatus.SUCCESS, result]),
+      error: (error) => this.setWeatherData([RequestStatus.ERROR, error]),
+    });
   }
 }

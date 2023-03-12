@@ -1,17 +1,28 @@
-export type WeatherApiResponse = {
+import { RequestStatus } from '../enums/request-status';
+
+export type WeatherApiResponse =
+  | WeatherApiLoading
+  | WeatherApiSuccess
+  | WeatherApiFailure;
+
+export type WeatherApiLoading = [RequestStatus.LOADING, null];
+export type WeatherApiSuccess = [RequestStatus.SUCCESS, WeatherData];
+export type WeatherApiFailure = [RequestStatus.ERROR, Error];
+
+export interface WeatherData {
   location: Location;
   current: CurrentWeather;
   forecast: {
     forecastday: Array<Forecast>;
   };
-} | null;
+}
 
-export type Location = {
+export interface Location {
   name: string;
   country: string;
-} | null;
+}
 
-export type CurrentWeather = {
+export interface CurrentWeather {
   temp_c: number;
   temp_f: number;
   is_day: number;
@@ -26,9 +37,9 @@ export type CurrentWeather = {
   wind_dir: string;
   humidity: number;
   uv: number;
-} | null;
+}
 
-export type Forecast = {
+export interface Forecast {
   day: {
     maxtemp_c: number;
     maxtemp_f: number;
@@ -39,4 +50,4 @@ export type Forecast = {
     sunrise: string;
     sunset: string;
   };
-};
+}
