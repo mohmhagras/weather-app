@@ -15,13 +15,17 @@ export class CurrentHighlightsComponent implements OnInit {
   @Input() uvNumber = 0;
   @Input() sunrise = '';
   @Input() sunset = '';
+  @Input() feelsLike = 0;
+  @Input() visibility = 0;
   readonly windDirectionText: any = WindDirectionText;
   readonly sunCoordinates = SunCoordinates;
   dayTimePercent = 0;
   uvText = '';
+  visibilityUnit: 'km' | 'mi' = 'km';
   ngOnInit(): void {
     this.setUvText();
     this.setDayTimePercent();
+    this.visibilityUnit = this.speedUnit === 'km/h' ? 'km' : 'mi';
   }
 
   private setUvText(): void {

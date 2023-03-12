@@ -63,4 +63,30 @@
       </div>
     </div>
   </div>
+  <div class="horizontal-centered-container">
+    <div class="info-box mini-info-box">
+      <h6 class="title">Humidity</h6>
+      <div class="horizontal-left-aligned-container">
+        <i-feather name="droplet" class="mini-box-icon"></i-feather>
+        <h3>{{ humidity }}<span> %</span></h3>
+      </div>
+    </div>
+    <div class="info-box mini-info-box">
+      <h6 class="title">Visibility</h6>
+      <div class="horizontal-left-aligned-container">
+        <i-feather name="eye" class="mini-box-icon"></i-feather>
+        <h3>
+          {{ visibility }}<span> {{ visibilityUnit }}</span>
+        </h3>
+      </div>
+    </div>
+    <div class="info-box mini-info-box">
+      <h6 class="title">Feels Like</h6>
+      <div class="horizontal-left-aligned-container">
+        <i-feather name="thermometer" class="mini-box-icon"></i-feather>
+
+        <h3>{{ feelsLike }}°</h3>
+      </div>
+    </div>
+  </div>
 </section>

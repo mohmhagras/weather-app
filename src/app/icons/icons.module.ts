@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
 import { FeatherModule } from 'angular-feather';
-import { MapPin, Clock, Sunrise, Sunset, Sun } from 'angular-feather/icons';
+import {
+  MapPin,
+  Clock,
+  Sunrise,
+  Sunset,
+  Sun,
+  Thermometer,
+  Eye,
+  Droplet,
+} from 'angular-feather/icons';
 
 const icons = {
   MapPin,
@@ -8,6 +17,9 @@ const icons = {
   Sunrise,
   Sunset,
   Sun,
+  Thermometer,
+  Eye,
+  Droplet,
 };
 
 @NgModule({

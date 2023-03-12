@@ -82,9 +82,11 @@ h4 {
   font-weight: 300;
 }
 h5 {
+  font-size: 0.83rem;
   font-weight: 400;
 }
 h6 {
+  font-size: 0.67rem;
   font-weight: 400;
   color: goldenrod;
 }
@@ -123,6 +125,18 @@ h6 {
       color: lightslategray;
     }
   }
+  .mini-info-box {
+    padding: 12px;
+    height: 72px;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 16px;
+    margin-right: 8px;
+    margin-left: 8px;
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
 }
 
 sup,
@@ -133,9 +147,9 @@ span {
 }
 
 .icon {
-  margin-right: 4px;
   width: 16px !important;
   height: 16px !important;
+  margin-right: 4px;
 }
 
 html,

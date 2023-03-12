@@ -22,6 +22,8 @@
       [uvNumber]="currentWeather.uv"
       [sunrise]="forecastedWeather[0].astro.sunrise"
       [sunset]="forecastedWeather[0].astro.sunset"
+      [feelsLike]="currentWeather[feelsLikeElement]"
+      [visibility]="currentWeather[visibilityElement]"
     >
     </app-current-highlights>
   </div>

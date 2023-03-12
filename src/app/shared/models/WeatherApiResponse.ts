@@ -37,6 +37,10 @@ export interface CurrentWeather {
   wind_dir: string;
   humidity: number;
   uv: number;
+  feelslike_c: number;
+  feelslike_f: number;
+  vis_km: number;
+  vis_miles: number;
 }
 
 export interface Forecast {

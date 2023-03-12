@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
   maxTempElement: 'maxtemp_c' | 'maxtemp_f' = 'maxtemp_c';
   minTempElement: 'mintemp_c' | 'mintemp_f' = 'mintemp_c';
   speedElement: 'wind_kph' | 'wind_mph' = 'wind_kph';
+  feelsLikeElement: 'feelslike_c' | 'feelslike_f' = 'feelslike_c';
+  visibilityElement: 'vis_km' | 'vis_miles' = 'vis_km';
 
   public get tempUnit() {
     return this._tempUnit;
@@ -36,15 +38,17 @@ export class AppComponent implements OnInit {
     this.tempElement = tempUnit === 'C' ? 'temp_c' : 'temp_f';
     this.maxTempElement = tempUnit === 'C' ? 'maxtemp_c' : 'maxtemp_f';
     this.minTempElement = tempUnit === 'C' ? 'mintemp_c' : 'mintemp_f';
+    this.feelsLikeElement = tempUnit === 'C' ? 'feelslike_c' : 'feelslike_f';
+  }
+
+  public get speedUnit() {
+    return this._speedUnit;
   }
 
   public set speedUnit(speedUnit: SpeedUnit) {
     this._speedUnit = speedUnit;
     this.speedElement = speedUnit === 'km/h' ? 'wind_kph' : 'wind_mph';
-  }
-
-  public get speedUnit() {
-    return this._speedUnit;
+    this.visibilityElement = speedUnit === 'km/h' ? 'vis_km' : 'vis_miles';
   }
 
   private setWeatherData(ApiResponse: WeatherApiResponse) {
