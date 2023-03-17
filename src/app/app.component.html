@@ -1,8 +1,5 @@
 <main>
-  <div
-    *ngIf="requestStatus === 'success'"
-    class="horizontal-centered-container current-info-wrapper"
-  >
+  <div *ngIf="requestStatus === 'success'" class="current-info-wrapper">
     <app-current-weather
       [temp]="currentWeather[tempElement]"
       [tempUnit]="tempUnit"
@@ -10,7 +7,8 @@
       [minTemp]="forecastedWeather[0].day[minTempElement]"
       [weatherText]="currentWeather.condition.text"
       [weatherIcon]="currentWeather.condition.icon"
-      [cityName]="location.name"
+      [city]="location.name"
+      [country]="location.country"
       [weatherCode]="currentWeather.condition.code"
       [isDay]="currentWeather.is_day"
     ></app-current-weather>

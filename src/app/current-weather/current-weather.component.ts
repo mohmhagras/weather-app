@@ -16,7 +16,8 @@ export class CurrentWeatherComponent implements OnInit {
   @Input() temp = 0;
   @Input() maxTemp = 0;
   @Input() minTemp = 0;
-  @Input() cityName = '';
+  @Input() city = '';
+  @Input() country = '';
   @Input() isDay = 0;
   @Input() tempUnit = TempratrueUnit.C;
   @Input() speedMode = SpeedUnit.KM;

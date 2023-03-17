@@ -7,8 +7,9 @@ import { ForecastService } from './shared/services/forecast/forecast.service';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { IconsModule } from './icons/icons.module';
 import { CurrentHighlightsComponent } from './current-highlights/current-highlights.component';
+import { HoursForecastComponent } from './hours-forecast/hours-forecast.component';
 @NgModule({
-  declarations: [AppComponent, CurrentWeatherComponent, CurrentHighlightsComponent],
+  declarations: [AppComponent, CurrentWeatherComponent, CurrentHighlightsComponent, HoursForecastComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, IconsModule],
   providers: [ForecastService],
   bootstrap: [AppComponent],
