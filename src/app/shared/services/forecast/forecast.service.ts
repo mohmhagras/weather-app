@@ -7,7 +7,9 @@ import { WeatherData } from '../../models/WeatherApiResponse';
   providedIn: 'root',
 })
 export class ForecastService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('start');
+  }
 
   private getCityName(): Observable<string> {
     return this.http.get<string>(environment.locationApiUrl, {

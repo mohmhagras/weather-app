@@ -54,4 +54,5 @@ export interface Forecast {
     sunrise: string;
     sunset: string;
   };
+  hour: CurrentWeather[];
 }

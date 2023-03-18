@@ -3,6 +3,7 @@ import { timer, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SpeedUnit } from '../shared/enums/speed-unit';
 import { TempratrueUnit } from '../shared/enums/tempratrue-unit';
+import { CurrentWeather } from '../shared/models/WeatherApiResponse';
 
 @Component({
   selector: 'app-current-weather',
@@ -21,6 +22,7 @@ export class CurrentWeatherComponent implements OnInit {
   @Input() isDay = 0;
   @Input() tempUnit = TempratrueUnit.C;
   @Input() speedMode = SpeedUnit.KM;
+  @Input() hours!: CurrentWeather[];
   dateTime!: Observable<Date>;
   iconPath = '';
 
