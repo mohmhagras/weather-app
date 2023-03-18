@@ -2,12 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SpeedUnit } from '../shared/enums/speed-unit';
 import { SunCoordinates } from '../shared/constants/SunCoordinates';
 import { WindDirectionText } from '../shared/constants/WindDirection';
+import { ForecastService } from '../shared/services/forecast/forecast.service';
 @Component({
   selector: 'app-current-highlights',
   templateUrl: './current-highlights.component.html',
   styleUrls: ['./current-highlights.component.scss'],
 })
 export class CurrentHighlightsComponent implements OnInit {
+  constructor(private forecastService: ForecastService) {}
+  /*
   @Input() speedUnit = SpeedUnit.KM;
   @Input() windSpeed = 0;
   @Input() windDir!: string;
@@ -17,15 +20,47 @@ export class CurrentHighlightsComponent implements OnInit {
   @Input() sunset = '';
   @Input() feelsLike = 0;
   @Input() visibility = 0;
+  */
+  speedUnit = SpeedUnit.KM;
+  windSpeed = 0;
+  windDir!: string;
+  humidity = 0;
+  uvNumber = 0;
+  sunrise = '';
+  sunset = '';
+  feelsLike = 0;
+  visibility = 0;
   readonly windDirectionText: any = WindDirectionText;
   readonly sunCoordinates = SunCoordinates;
   dayTimePercent = 0;
   uvText = '';
   visibilityUnit: 'km' | 'mi' = 'km';
   ngOnInit(): void {
+    this.getData();
     this.setUvText();
     this.setDayTimePercent();
     this.visibilityUnit = this.speedUnit === 'km/h' ? 'km' : 'mi';
+  }
+
+  private getData() {
+    const {
+      wind_kph,
+      wind_dir,
+      humidity,
+      uvNumber,
+      sunrise,
+      sunset,
+      feelslike_c,
+      vis_km,
+    } = this.forecastService.getHighlights();
+    this.windSpeed = wind_kph;
+    this.windDir = wind_dir;
+    this.humidity = humidity;
+    this.uvNumber = uvNumber;
+    this.sunrise = sunrise;
+    this.sunset = sunset;
+    this.feelsLike = feelslike_c;
+    this.visibility = vis_km;
   }
 
   private setUvText(): void {

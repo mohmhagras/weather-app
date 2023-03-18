@@ -1,29 +1,11 @@
 <main>
   <div *ngIf="requestStatus === 'success'" class="current-info-wrapper">
-    <app-current-weather
-      [temp]="currentWeather[tempElement]"
-      [tempUnit]="tempUnit"
-      [maxTemp]="forecastedWeather[0].day[maxTempElement]"
-      [minTemp]="forecastedWeather[0].day[minTempElement]"
-      [weatherText]="currentWeather.condition.text"
-      [weatherIcon]="currentWeather.condition.icon"
-      [city]="location.name"
-      [country]="location.country"
-      [weatherCode]="currentWeather.condition.code"
-      [isDay]="currentWeather.is_day"
-      [hours]="forecastedWeather[0].hour"
-    ></app-current-weather>
+    <app-current-weather></app-current-weather>
+    <app-current-highlights> </app-current-highlights>
+    <!--
     <app-current-highlights
-      [speedUnit]="speedUnit"
-      [windSpeed]="currentWeather[speedElement]"
-      [windDir]="currentWeather.wind_dir"
-      [humidity]="currentWeather.humidity"
-      [uvNumber]="currentWeather.uv"
-      [sunrise]="forecastedWeather[0].astro.sunrise"
-      [sunset]="forecastedWeather[0].astro.sunset"
-      [feelsLike]="currentWeather[feelsLikeElement]"
-      [visibility]="currentWeather[visibilityElement]"
+
     >
-    </app-current-highlights>
+    </app-current-highlights>-->
   </div>
 </main>

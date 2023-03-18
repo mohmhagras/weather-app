@@ -1,3 +1,17 @@
-<div *ngFor="let hour of leftHours">
-  {{ hour.temp_c }}
+<div
+  *ngFor="let hour of leftHours; let i = index"
+  class="horizontal-spaced-container hour-container"
+>
+  <div class="horizontal-end-aligned-container">
+    <h3>{{ getHour(i) }}</h3>
+    <h4>
+      {{ getPeriod(i) }}
+    </h4>
+  </div>
+  <img
+    [src]="getIconPath(hour.condition.code, hour.is_day)"
+    width="24px"
+    height="24px"
+  />
+  <h3>{{ hour.temp_c | number : "1.0-0" }}°</h3>
 </div>

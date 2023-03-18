@@ -5,7 +5,7 @@ export type WeatherApiResponse =
   | WeatherApiSuccess
   | WeatherApiFailure;
 
-export type WeatherApiLoading = [RequestStatus.LOADING, null];
+export type WeatherApiLoading = [RequestStatus.LOADING, undefined];
 export type WeatherApiSuccess = [RequestStatus.SUCCESS, WeatherData];
 export type WeatherApiFailure = [RequestStatus.ERROR, Error];
 
