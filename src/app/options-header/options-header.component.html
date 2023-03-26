@@ -1,0 +1,41 @@
+<header>
+  <div class="wrapper">
+    <div class="horizontal-centered-container">
+      <div class="input-wrapper">
+        <input type="text" placeholder="" />
+        <i-feather name="map-pin" class="location-icon"></i-feather>
+      </div>
+      <div class="horizontal-centered-container">
+        <i-feather name="clock" class="icon"></i-feather>
+
+        <h5>
+          {{ dateTime | async | date }}
+          <b> {{ dateTime | async | date : "shortTime" }}</b>
+        </h5>
+      </div>
+    </div>
+    <div class="horizontal-centered-container">
+      <div class="horizontal-centered-container">
+        <h5>°C</h5>
+        <div class="radio-button-body" (click)="handleTempUnitToggle()">
+          <div
+            class="radio-button-pointer"
+            [ngClass]="{ off: tempUnit === 'C', on: tempUnit === 'F' }"
+          ></div>
+        </div>
+        <h5>°F</h5>
+      </div>
+      <h5 class="vertical-divider">|</h5>
+      <div class="horizontal-centered-container">
+        <h5>KM</h5>
+        <div class="radio-button-body" (click)="handleSpeedUnitToggle()">
+          <div
+            class="radio-button-pointer"
+            [ngClass]="{ off: speedUnit === 'km/h', on: speedUnit === 'm/h' }"
+          ></div>
+        </div>
+        <h5>MI</h5>
+      </div>
+    </div>
+  </div>
+</header>

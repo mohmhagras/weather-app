@@ -1,11 +1,12 @@
+<app-options-header></app-options-header>
 <main>
-  <div *ngIf="requestStatus === 'success'" class="current-info-wrapper">
-    <app-current-weather></app-current-weather>
-    <app-current-highlights> </app-current-highlights>
-    <!--
-    <app-current-highlights
-
-    >
-    </app-current-highlights>-->
+  <div *ngIf="requestStatus === 'success'" class="vertical-centered-container">
+    <div class="current-info-wrapper">
+      <app-current-weather></app-current-weather>
+      <app-current-highlights> </app-current-highlights>
+    </div>
+    <div class="current-info-wrapper">
+      <app-days-forecast></app-days-forecast>
+    </div>
   </div>
 </main>

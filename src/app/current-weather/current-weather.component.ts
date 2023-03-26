@@ -1,11 +1,10 @@
-import { identifierName } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { timer, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SpeedUnit } from '../shared/enums/speed-unit';
 import { TempratrueUnit } from '../shared/enums/tempratrue-unit';
-import { CurrentWeather } from '../shared/models/WeatherApiResponse';
 import { ForecastService } from '../shared/services/forecast/forecast.service';
+import { OptionsService } from '../shared/services/options/options.service';
 
 @Component({
   selector: 'app-current-weather',
@@ -13,20 +12,16 @@ import { ForecastService } from '../shared/services/forecast/forecast.service';
   styleUrls: ['./current-weather.component.scss'],
 })
 export class CurrentWeatherComponent implements OnInit {
-  constructor(private forecastService: ForecastService) {}
-  /*
-  @Input() weatherText = '';
-  @Input() weatherIcon = '';
-  @Input() weatherCode = 0;
-  @Input() temp = 0;
-  @Input() maxTemp = 0;
-  @Input() minTemp = 0;
-  @Input() city = '';
-  @Input() country = '';
-  @Input() isDay = 0;
-  @Input() tempUnit = TempratrueUnit.C;
-  @Input() speedMode = SpeedUnit.KM;
-  */
+  constructor(
+    private forecastService: ForecastService,
+    private optionsService: OptionsService
+  ) {}
+  private tempC!: number;
+  private tempF!: number;
+  private maxTempC!: number;
+  private minTempC!: number;
+  private maxTempF!: number;
+  private minTempF!: number;
   weatherText = '';
   weatherIcon = '';
   weatherCode = 0;
@@ -37,7 +32,6 @@ export class CurrentWeatherComponent implements OnInit {
   country = '';
   isDay = 0;
   tempUnit = TempratrueUnit.C;
-  speedMode = SpeedUnit.KM;
   dateTime!: Observable<Date>;
   iconPath = '';
 
@@ -47,6 +41,12 @@ export class CurrentWeatherComponent implements OnInit {
     this.iconPath = `../../assets/weather-icons/${this.weatherCode}${
       this.isDay ? 1 : 0
     }.svg`;
+    this.optionsService.tempUnit.subscribe((tempUnit) => {
+      this.tempUnit = tempUnit;
+      this.temp = this[`temp${tempUnit}`];
+      this.maxTemp = this[`maxTemp${tempUnit}`];
+      this.minTemp = this[`minTemp${tempUnit}`];
+    });
   }
 
   private getData() {
@@ -55,8 +55,11 @@ export class CurrentWeatherComponent implements OnInit {
       weatherIcon,
       weatherText,
       temp_c,
+      temp_f,
       maxtemp_c,
       mintemp_c,
+      maxtemp_f,
+      mintemp_f,
       city,
       country,
       is_day,
@@ -64,9 +67,12 @@ export class CurrentWeatherComponent implements OnInit {
     this.weatherCode = weatherCode;
     this.weatherIcon = weatherIcon;
     this.weatherText = weatherText;
-    this.temp = temp_c;
-    this.maxTemp = maxtemp_c;
-    this.minTemp = mintemp_c;
+    this.tempC = temp_c;
+    this.tempF = temp_f;
+    this.maxTempC = maxtemp_c;
+    this.minTempC = mintemp_c;
+    this.maxTempF = maxtemp_f;
+    this.minTempF = mintemp_f;
     this.city = city;
     this.country = country;
     this.isDay = is_day;

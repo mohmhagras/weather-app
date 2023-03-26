@@ -10,17 +10,6 @@ import { ForecastService } from '../shared/services/forecast/forecast.service';
 })
 export class CurrentHighlightsComponent implements OnInit {
   constructor(private forecastService: ForecastService) {}
-  /*
-  @Input() speedUnit = SpeedUnit.KM;
-  @Input() windSpeed = 0;
-  @Input() windDir!: string;
-  @Input() humidity = 0;
-  @Input() uvNumber = 0;
-  @Input() sunrise = '';
-  @Input() sunset = '';
-  @Input() feelsLike = 0;
-  @Input() visibility = 0;
-  */
   speedUnit = SpeedUnit.KM;
   windSpeed = 0;
   windDir!: string;

@@ -64,13 +64,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
-    this.forecastService.get().subscribe({
-      next: (result) => this.setWeatherData([RequestStatus.SUCCESS, result]),
-      error: (error) => this.setWeatherData([RequestStatus.ERROR, error]),
-    });
-  }
-  */
     this.forecastService.data.subscribe(
       (result) => (this.requestStatus = result[0])
     );

@@ -1,0 +1,75 @@
+@import "../../mixins.scss";
+header {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(9, 129, 179, 0.35);
+  height: 100%;
+  padding: 8px 16px;
+  input {
+    outline: none;
+    color: white;
+    border-radius: 16px;
+    padding: 8px;
+    padding-left: 30px;
+    border: none;
+    font-size: 0.83rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin-right: 16px;
+  }
+  @include mid-size() {
+    flex-direction: row;
+  }
+}
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.location-icon {
+  width: 18px !important;
+  height: 18px !important;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 8px;
+  stroke: white;
+}
+.radio-button-container {
+  margin-right: 12px;
+}
+.vertical-divider {
+  margin-right: 8px;
+  margin-left: 8px;
+  color: lightslategray;
+}
+
+.radio-button-body {
+  height: 20px;
+  width: 40px;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 0px 4px;
+  cursor: pointer;
+}
+.radio-button-pointer {
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border-radius: 50%;
+  &.off {
+    margin-right: auto;
+  }
+  &.on {
+    margin-left: auto;
+  }
+}

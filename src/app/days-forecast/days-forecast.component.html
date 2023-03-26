@@ -1,0 +1,8 @@
+<div class="info-container">
+  <div
+    *ngFor="let day of days; let i = index"
+    class="horizontal-spaced-container"
+  >
+    <h3>{{ day.day.mintemp_c }} / {{ day.day.maxtemp_c }}</h3>
+  </div>
+</div>

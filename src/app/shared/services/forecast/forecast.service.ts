@@ -130,4 +130,10 @@ export class ForecastService {
       vis_km,
     };
   }
+
+  getDaysForecast() {
+    if (this.data.value[0] !== 'success')
+      throw new Error('Called before data is available!');
+    return this.data.value[1].forecast.forecastday;
+  }
 }

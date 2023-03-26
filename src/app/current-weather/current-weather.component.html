@@ -7,25 +7,6 @@
     <h3>{{ weatherText }}</h3>
   </div>
   <h4>H: {{ maxTemp }}° L: {{ minTemp }}°</h4>
-  <!--
-  <div class="vertical-left-aligned-container location-time-container">
-    
-    <div class="horizontal-centered-container">
-      <i-feather name="map-pin" class="icon"></i-feather>
-
-      <h5>{{ city }}, {{ country }}</h5>
-    </div>
-    
-    <div class="horizontal-centered-container">
-      <i-feather name="clock" class="icon"></i-feather>
-
-      <h5>
-        {{ dateTime | async | date }}
-        <b> {{ dateTime | async | date : "shortTime" }}</b>
-      </h5>
-    </div>
-  </div>
--->
   <div class="divider"></div>
   <app-hours-forecast></app-hours-forecast>
 </section>
