@@ -114,6 +114,7 @@ export class ForecastService {
       feelslike_c,
       feelslike_f,
       vis_km,
+      vis_miles,
     } = this.data.value[1].current;
     const { sunrise, sunset } =
       this.data.value[1].forecast.forecastday[0].astro;
@@ -128,6 +129,7 @@ export class ForecastService {
       feelslike_c,
       feelslike_f,
       vis_km,
+      vis_miles,
     };
   }
 
