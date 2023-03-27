@@ -6,7 +6,9 @@
     <img [src]="iconPath" width="36px" height="36px" />
     <h3>{{ weatherText }}</h3>
   </div>
-  <h4>H: {{ maxTemp }}° L: {{ minTemp }}°</h4>
+  <h4>
+    H: {{ maxTemp | number : "1.0-0" }}° L: {{ minTemp | number : "1.0-0" }}°
+  </h4>
   <div class="divider"></div>
   <app-hours-forecast></app-hours-forecast>
 </section>

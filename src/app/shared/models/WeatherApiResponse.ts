@@ -20,6 +20,7 @@ export interface WeatherData {
 export interface Location {
   name: string;
   country: string;
+  region: string;
 }
 
 export interface CurrentWeather {

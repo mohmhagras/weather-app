@@ -12,6 +12,7 @@ import {
 import {
   WeatherApiResponse,
   WeatherData,
+  Location,
 } from '../../models/WeatherApiResponse';
 import { RequestStatus } from '../../enums/request-status';
 @Injectable({
@@ -92,6 +93,7 @@ export class ForecastService {
       mintemp_f,
     };
   }
+
   getHoursForecast() {
     if (this.data.value[0] !== 'success')
       throw new Error('Called before data is available!');
@@ -137,5 +139,15 @@ export class ForecastService {
     if (this.data.value[0] !== 'success')
       throw new Error('Called before data is available!');
     return this.data.value[1].forecast.forecastday;
+  }
+
+  getTargetLocation() {
+    if (this.data.value[0] !== 'success')
+      throw new Error('Called before data is available!');
+    return this.data.value[1].location;
+  }
+
+  search(query: string) {
+    return this.http.get<Location[]>(`${environment.searchApiUrl}&q=${query}`);
   }
 }

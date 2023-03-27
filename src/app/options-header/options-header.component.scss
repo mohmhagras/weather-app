@@ -3,6 +3,7 @@ header {
   background-color: black;
   position: fixed;
   width: 100%;
+  z-index: 10;
 }
 .wrapper {
   display: flex;
@@ -10,7 +11,7 @@ header {
   justify-content: space-between;
   background-color: rgba(9, 129, 179, 0.35);
   height: 100%;
-  padding: 8px 16px;
+  padding: 16px;
   input {
     outline: none;
     color: white;
@@ -21,15 +22,38 @@ header {
     font-size: 0.83rem;
     background-color: rgba(0, 0, 0, 0.3);
     margin-right: 16px;
+    width: 280px;
+  }
+  .header-element {
+    margin-bottom: 16px;
+    @include mid-size() {
+      margin-bottom: 0px;
+    }
   }
   @include mid-size() {
     flex-direction: row;
+    padding: 12px 16px;
   }
 }
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+}
+.search-results {
+  position: absolute;
+  width: calc(100% - 16px);
+  background-color: rgba(9, 129, 179, 0.35);
+  top: calc(100% + 12px);
+  border-radius: 16px;
+  h5 {
+    color: white;
+    padding: 16px;
+    cursor: pointer;
+  }
+  h5:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 .location-icon {
   width: 18px !important;

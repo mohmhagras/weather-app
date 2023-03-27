@@ -1,4 +1,4 @@
-<app-options-header></app-options-header>
+<app-options-header *ngIf="requestStatus === 'success'"></app-options-header>
 <main>
   <div *ngIf="requestStatus === 'success'" class="vertical-centered-container">
     <div class="current-info-wrapper">

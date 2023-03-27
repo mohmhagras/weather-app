@@ -1,13 +1,22 @@
 <header>
   <div class="wrapper">
-    <div class="horizontal-centered-container">
-      <div class="input-wrapper">
-        <input type="text" placeholder="" />
+    <div class="horizontal-centered-container wrappable">
+      <div class="input-wrapper header-element">
+        <input
+          type="search"
+          placeholder="Search for a location"
+          [value]="location"
+          (input)="handleSearchBoxInput($event)"
+        />
         <i-feather name="map-pin" class="location-icon"></i-feather>
+        <div *ngIf="results.length" class="search-results">
+          <div *ngFor="let item of results">
+            <h5>{{ item.name }}, {{ item.region }}, {{ item.country }}</h5>
+          </div>
+        </div>
       </div>
-      <div class="horizontal-centered-container">
+      <div class="horizontal-centered-container header-element">
         <i-feather name="clock" class="icon"></i-feather>
-
         <h5>
           {{ dateTime | async | date }}
           <b> {{ dateTime | async | date : "shortTime" }}</b>

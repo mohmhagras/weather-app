@@ -1,8 +1,9 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, timer, map } from 'rxjs';
 import { SpeedUnit } from '../shared/enums/speed-unit';
+import { Location } from '../shared/models/WeatherApiResponse';
 import { TempratrueUnit } from '../shared/enums/tempratrue-unit';
+import { ForecastService } from '../shared/services/forecast/forecast.service';
 import { OptionsService } from '../shared/services/options/options.service';
 
 @Component({
@@ -11,13 +12,18 @@ import { OptionsService } from '../shared/services/options/options.service';
   styleUrls: ['./options-header.component.scss'],
 })
 export class OptionsHeaderComponent implements OnInit {
-  constructor(private optionsService: OptionsService) {}
+  constructor(
+    private forecastService: ForecastService,
+    private optionsService: OptionsService
+  ) {}
   dateTime!: Observable<Date>;
-  @Input() city = '';
-  @Input() country = '';
+  location = '';
+  searchQuery = '';
+  results: Location[] = [];
   tempUnit!: TempratrueUnit;
   speedUnit!: SpeedUnit;
   ngOnInit(): void {
+    this.getLocation();
     this.dateTime = timer(0, 1000).pipe(map(() => new Date()));
     this.optionsService.tempUnit.subscribe(
       (tempUnit) => (this.tempUnit = tempUnit)
@@ -33,5 +39,21 @@ export class OptionsHeaderComponent implements OnInit {
 
   handleSpeedUnitToggle() {
     this.optionsService.toggleSpeedUnit();
+  }
+
+  private getLocation() {
+    const { name, country, region } = this.forecastService.getTargetLocation();
+    this.location = `${name}, ${region}, ${country}`;
+  }
+
+  handleSearchBoxInput(event: Event) {
+    const query = (event.target as HTMLInputElement).value;
+    if (query.length > 1) {
+      this.forecastService
+        .search(query)
+        .subscribe((res) => (this.results = res));
+    } else {
+      this.results = [];
+    }
   }
 }
