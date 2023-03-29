@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CurrentWeather } from '../shared/models/WeatherApiResponse';
 import { ForecastService } from '../shared/services/forecast/forecast.service';
 import { OptionsService } from '../shared/services/options/options.service';
@@ -29,7 +29,8 @@ export class HoursForecastComponent implements OnInit {
 
   getHour(index: number) {
     const currentHour = new Date().getHours();
-    return currentHour - 12 + index + 1;
+    if (currentHour > 12) return currentHour - 12 + index + 1;
+    return currentHour + index + 1;
   }
 
   getPeriod(index: number) {
