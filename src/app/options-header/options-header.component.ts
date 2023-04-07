@@ -23,8 +23,7 @@ export class OptionsHeaderComponent implements OnInit {
   tempUnit!: TempratrueUnit;
   speedUnit!: SpeedUnit;
   ngOnInit(): void {
-    this.getLocation();
-    this.dateTime = timer(0, 1000).pipe(map(() => new Date()));
+    this.getLocationAndTime();
     this.optionsService.tempUnit.subscribe(
       (tempUnit) => (this.tempUnit = tempUnit)
     );
@@ -41,9 +40,10 @@ export class OptionsHeaderComponent implements OnInit {
     this.optionsService.toggleSpeedUnit();
   }
 
-  private getLocation() {
+  private getLocationAndTime() {
     const { name, country, region } = this.forecastService.getTargetLocation();
     this.location = `${name}, ${region}, ${country}`;
+    this.dateTime = this.forecastService.currentDateTime;
   }
 
   handleSearchBoxInput(event: Event) {
@@ -55,5 +55,9 @@ export class OptionsHeaderComponent implements OnInit {
     } else {
       this.results = [];
     }
+  }
+
+  handleOptionSelection(city: string, region: string, country: string) {
+    this.forecastService.changeLocation(`${city}, ${region}, ${country}`);
   }
 }

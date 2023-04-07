@@ -10,9 +10,14 @@
         />
         <i-feather name="map-pin" class="location-icon"></i-feather>
         <div *ngIf="results.length" class="search-results">
-          <div *ngFor="let item of results">
-            <h5>{{ item.name }}, {{ item.region }}, {{ item.country }}</h5>
-          </div>
+          <h5
+            *ngFor="let item of results"
+            (click)="
+              handleOptionSelection(item.name, item.region, item.country)
+            "
+          >
+            {{ item.name }}, {{ item.region }}, {{ item.country }}
+          </h5>
         </div>
       </div>
       <div class="horizontal-centered-container header-element">

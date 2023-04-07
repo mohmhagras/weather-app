@@ -103,7 +103,7 @@ export class CurrentHighlightsComponent implements OnInit {
   }
 
   private setDayTimePercent() {
-    const dateRef = new Date();
+    const dateRef = this.forecastService.currentDateTime.value;
     const sunriseTimestamp = new Date(
       dateRef.getFullYear(),
       dateRef.getMonth(),
@@ -119,7 +119,9 @@ export class CurrentHighlightsComponent implements OnInit {
       parseInt(this.sunset.slice(3, 5))
     ).valueOf();
     const dayTime = sunsetTimestamp - sunriseTimestamp;
-    const value = Math.floor(((Date.now() - sunriseTimestamp) * 100) / dayTime);
+    const value = Math.floor(
+      ((dateRef.valueOf() - sunriseTimestamp) * 100) / dayTime
+    );
     if (value < 100) this.dayTimePercent = value;
   }
 }

@@ -22,11 +22,15 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 156px 12px;
   background-color: black;
   @include mid-size() {
     padding: 36px 12px;
     padding-top: 86px;
+  }
+  @include desktop() {
+    padding-top: 0px;
   }
 }
 .vertical-left-aligned-container {

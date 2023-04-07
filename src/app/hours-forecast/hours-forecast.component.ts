@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, timer, map, BehaviorSubject } from 'rxjs';
 import { CurrentWeather } from '../shared/models/WeatherApiResponse';
 import { ForecastService } from '../shared/services/forecast/forecast.service';
 import { OptionsService } from '../shared/services/options/options.service';
@@ -15,9 +16,11 @@ export class HoursForecastComponent implements OnInit {
   ) {}
   leftHours: CurrentWeather[] = [];
   tempElement!: 'temp_c' | 'temp_f';
+  dateTime!: Date;
 
   ngOnInit(): void {
     this.leftHours = this.forecastService.getHoursForecast();
+    this.dateTime = this.forecastService.currentDateTime.value;
     this.optionsService.tempUnit.subscribe(
       (tempUnit) => (this.tempElement = tempUnit === 'C' ? 'temp_c' : 'temp_f')
     );
@@ -28,14 +31,14 @@ export class HoursForecastComponent implements OnInit {
   }
 
   getHour(index: number) {
-    const currentHour = new Date().getHours();
-    if (currentHour > 12) return currentHour - 12 + index + 1;
-    return currentHour + index + 1;
+    const currentHour = this.dateTime.getHours();
+    const hr24Format = currentHour + index;
+    if (hr24Format + 1 > 12) return hr24Format - 12 + 1;
+    return hr24Format + 1;
   }
 
   getPeriod(index: number) {
-    const currentHour = new Date().getHours();
-    const targetHour = currentHour - 12 + index + 1;
-    return currentHour + targetHour >= 12 ? 'PM' : 'AM';
+    const currentHour = this.dateTime.getHours();
+    return currentHour + index + 1 >= 12 ? 'PM' : 'AM';
   }
 }

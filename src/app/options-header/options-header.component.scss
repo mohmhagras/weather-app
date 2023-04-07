@@ -43,16 +43,17 @@ header {
 .search-results {
   position: absolute;
   width: calc(100% - 16px);
-  background-color: rgba(9, 129, 179, 0.35);
-  top: calc(100% + 12px);
+  top: calc(100% + 14px);
   border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(119, 136, 153, 0.5);
   h5 {
     color: white;
     padding: 16px;
     cursor: pointer;
   }
   h5:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(9, 129, 179, 0.35);
   }
 }
 .location-icon {

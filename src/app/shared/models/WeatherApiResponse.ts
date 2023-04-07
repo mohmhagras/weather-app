@@ -21,6 +21,7 @@ export interface Location {
   name: string;
   country: string;
   region: string;
+  localtime: string;
 }
 
 export interface CurrentWeather {
@@ -45,11 +46,17 @@ export interface CurrentWeather {
 }
 
 export interface Forecast {
+  date: string;
   day: {
     maxtemp_c: number;
     maxtemp_f: number;
     mintemp_c: number;
     mintemp_f: number;
+    condition: {
+      text: string;
+      icon: string;
+      code: number;
+    };
   };
   astro: {
     sunrise: string;

@@ -32,12 +32,10 @@ export class CurrentWeatherComponent implements OnInit {
   country = '';
   isDay = 0;
   tempUnit = TempratrueUnit.C;
-  dateTime!: Observable<Date>;
   iconPath = '';
 
   ngOnInit(): void {
     this.getData();
-    this.dateTime = timer(0, 1000).pipe(map(() => new Date()));
     this.iconPath = `../../assets/weather-icons/${this.weatherCode}${
       this.isDay ? 1 : 0
     }.svg`;

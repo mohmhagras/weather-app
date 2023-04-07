@@ -15,6 +15,7 @@ import {
   Location,
 } from '../../models/WeatherApiResponse';
 import { RequestStatus } from '../../enums/request-status';
+import { timer } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -27,6 +28,7 @@ export class ForecastService {
     RequestStatus.LOADING,
     undefined,
   ]);
+  currentDateTime!: BehaviorSubject<Date>;
 
   private getCityName(): Observable<string> {
     return this.http.get<string>(environment.locationApiUrl, {
@@ -52,23 +54,35 @@ export class ForecastService {
     }
   }
 
-  private get() {
-    this.getCityName()
-      .pipe(
+  private get(location?: string) {
+    let getDataObservable: Observable<WeatherData>;
+    if (location === undefined) {
+      getDataObservable = this.getCityName().pipe(
         switchMap((cityName) => {
           return this.getForecast(cityName);
         }),
         retry(2),
         catchError(this.catchError)
-      )
-      .subscribe({
-        next: (result) => {
-          this.data.next([RequestStatus.SUCCESS, result]);
-        },
-        error: (error) => {
-          this.data.next([RequestStatus.ERROR, error]);
-        },
-      });
+      );
+    } else {
+      getDataObservable = this.getForecast(location);
+    }
+    getDataObservable.subscribe({
+      next: (result) => {
+        this.data.next([RequestStatus.SUCCESS, result]);
+        this.currentDateTime = new BehaviorSubject(
+          new Date(result.location.localtime)
+        );
+        timer(0, 1000).subscribe(() =>
+          this.currentDateTime.next(
+            new Date(this.currentDateTime.value.valueOf() + 1000)
+          )
+        );
+      },
+      error: (error) => {
+        this.data.next([RequestStatus.ERROR, error]);
+      },
+    });
   }
 
   getCurrentWeather() {
@@ -97,7 +111,7 @@ export class ForecastService {
   getHoursForecast() {
     if (this.data.value[0] !== 'success')
       throw new Error('Called before data is available!');
-    const currentHour = new Date().getHours();
+    const currentHour = new Date(this.currentDateTime.value).getHours();
     const leftHours = this.data.value[1].forecast.forecastday[0].hour.slice(
       currentHour + 1
     );
@@ -144,10 +158,16 @@ export class ForecastService {
   getTargetLocation() {
     if (this.data.value[0] !== 'success')
       throw new Error('Called before data is available!');
+
     return this.data.value[1].location;
   }
 
   search(query: string) {
     return this.http.get<Location[]>(`${environment.searchApiUrl}&q=${query}`);
+  }
+
+  changeLocation(location: string) {
+    this.data.next([RequestStatus.LOADING, undefined]);
+    this.get(location);
   }
 }
