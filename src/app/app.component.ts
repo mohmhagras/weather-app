@@ -1,13 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ForecastService } from './shared/services/forecast/forecast.service';
-import {
-  WeatherApiResponse,
-  Location,
-  CurrentWeather,
-  Forecast,
-} from './shared/models/WeatherApiResponse';
-import { TempratrueUnit } from './shared/enums/tempratrue-unit';
-import { SpeedUnit } from './shared/enums/speed-unit';
 import { RequestStatus } from './shared/enums/request-status';
 @Component({
   selector: 'app-root',

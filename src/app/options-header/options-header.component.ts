@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, timer, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SpeedUnit } from '../shared/enums/speed-unit';
 import { Location } from '../shared/models/WeatherApiResponse';
 import { TempratrueUnit } from '../shared/enums/tempratrue-unit';
