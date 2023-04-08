@@ -60,4 +60,12 @@ export class OptionsHeaderComponent implements OnInit {
   handleOptionSelection(city: string, region: string, country: string) {
     this.forecastService.changeLocation(`${city}, ${region}, ${country}`);
   }
+
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.forecastService.changeLocation(
+        (event.target as HTMLInputElement).value
+      );
+    }
+  }
 }
