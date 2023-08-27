@@ -48,7 +48,7 @@ export class OptionsHeaderComponent implements OnInit {
 
   handleSearchBoxInput(event: Event) {
     const query = (event.target as HTMLInputElement).value;
-    if (query.length > 1) {
+    if (query.length > 2) {
       this.forecastService
         .search(query)
         .subscribe((res) => (this.results = res));
