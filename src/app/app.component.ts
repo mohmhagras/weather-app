@@ -10,8 +10,8 @@ export class AppComponent implements OnInit {
   constructor(private forecastService: ForecastService) {}
   requestStatus = RequestStatus.LOADING;
   ngOnInit(): void {
-    this.forecastService.data.subscribe(
-      (result) => (this.requestStatus = result[0])
-    );
+    this.forecastService.data.subscribe((result) => {
+      this.requestStatus = result[0];
+    });
   }
 }

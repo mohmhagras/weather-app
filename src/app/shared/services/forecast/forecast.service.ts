@@ -16,6 +16,8 @@ import {
 } from '../../models/WeatherApiResponse';
 import { RequestStatus } from '../../enums/request-status';
 import { timer } from 'rxjs';
+import createDateObject from '../../helpers/create-date-object';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -69,15 +71,15 @@ export class ForecastService {
     }
     getDataObservable.subscribe({
       next: (result) => {
-        this.data.next([RequestStatus.SUCCESS, result]);
         this.currentDateTime = new BehaviorSubject(
-          new Date(result.location.localtime)
+          createDateObject(result.location.localtime)
         );
         timer(0, 1000).subscribe(() =>
           this.currentDateTime.next(
             new Date(this.currentDateTime.value.valueOf() + 1000)
           )
         );
+        this.data.next([RequestStatus.SUCCESS, result]);
       },
       error: (error) => {
         this.data.next([RequestStatus.ERROR, error]);
